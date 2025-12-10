@@ -1,7 +1,8 @@
-import { Locale, hotelsComDomains, cjAffiliateAids } from './i18n';
+import { Locale, hotelsComDomains } from './i18n';
 
-const CJ_PID = process.env.NEXT_PUBLIC_CJ_PID || '101611980';
-const CJ_CID = process.env.NEXT_PUBLIC_CJ_CID || '7427884';
+// CJ Affiliate credentials from database export
+const CJ_PID = '101548506';
+const CJ_AID = '13920931';
 
 interface AffiliateParams {
   locale: Locale;
@@ -13,53 +14,43 @@ interface AffiliateParams {
 
 /**
  * Generate a CJ Affiliate tracking link for Hotels.com
- *
- * SubID format: site:costablancahotels|lang:sv|dest:benidorm|pos:hero
+ * Format: https://www.anrdoezrs.net/click-{pid}-{aid}?url={encoded_url}&sid={subid}
  */
 export function generateHotelsComLink(params: AffiliateParams): string {
-  const { locale, destination, hotelSlug, position, searchQuery } = params;
+  const { locale, destination, position, searchQuery } = params;
 
-  const aid = cjAffiliateAids[locale];
   const domain = hotelsComDomains[locale];
 
-  // Build SubID for tracking
-  const subIdParts = [
-    'site:costablancahotels',
-    `lang:${locale}`,
-  ];
-
+  // Build SubID for tracking: {language}_{destination}_{source}
+  const subIdParts: string[] = [locale];
   if (destination) {
-    subIdParts.push(`dest:${destination}`);
+    subIdParts.push(destination.replace(/-/g, ''));
   }
-
-  if (hotelSlug) {
-    subIdParts.push(`hotel:${hotelSlug}`);
-  }
-
   if (position) {
-    subIdParts.push(`pos:${position}`);
+    subIdParts.push(position);
   }
-
-  const subId = subIdParts.join('|');
+  const subId = subIdParts.join('_');
 
   // Build the destination URL on Hotels.com
   let destinationUrl = `https://${domain}`;
 
   if (searchQuery) {
-    // Search URL
-    destinationUrl += `/search.do?q-destination=${encodeURIComponent(searchQuery)}&q-check-in=&q-check-out=&q-rooms=1&q-room-0-adults=2&q-room-0-children=0`;
+    destinationUrl += `/Hotel-Search?destination=${encodeURIComponent(searchQuery)}`;
   } else if (destination) {
-    // Destination search
     const destinationName = destination.replace(/-/g, ' ');
-    destinationUrl += `/search.do?q-destination=${encodeURIComponent(destinationName + ', Spain')}&q-check-in=&q-check-out=&q-rooms=1&q-room-0-adults=2&q-room-0-children=0`;
+    // Capitalize first letter of each word
+    const formattedName = destinationName
+      .split(' ')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
+    destinationUrl += `/Hotel-Search?destination=${encodeURIComponent(formattedName)}`;
   }
 
-  // Build CJ tracking URL
-  const cjUrl = new URL('https://www.anrdoezrs.net/links/' + CJ_PID + '/type/dlg/' + aid);
-  cjUrl.searchParams.set('sid', subId);
-  cjUrl.searchParams.set('url', destinationUrl);
+  // Build CJ tracking URL using click format
+  const encodedUrl = encodeURIComponent(destinationUrl);
+  const cjUrl = `https://www.anrdoezrs.net/click-${CJ_PID}-${CJ_AID}?url=${encodedUrl}&sid=${subId}`;
 
-  return cjUrl.toString();
+  return cjUrl;
 }
 
 /**
