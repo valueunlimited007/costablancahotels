@@ -1,41 +1,21 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
   --background: #ffffff;
   --foreground: #1a1a2e;
-
-  /* Costa Blanca brand colors - Mediterranean theme */
-  --primary: #0891b2;      /* Cyan/Turquoise - Mediterranean sea */
+  --primary: #0891b2;
   --primary-dark: #0e7490;
   --primary-light: #22d3ee;
-
-  --secondary: #f59e0b;    /* Amber/Gold - Spanish sun */
+  --secondary: #f59e0b;
   --secondary-dark: #d97706;
   --secondary-light: #fbbf24;
-
-  --accent: #059669;       /* Emerald - Palm trees/nature */
-
+  --accent: #059669;
   --muted: #f1f5f9;
   --muted-foreground: #64748b;
-
   --border: #e2e8f0;
   --ring: #0891b2;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-primary: var(--primary);
-  --color-primary-dark: var(--primary-dark);
-  --color-primary-light: var(--primary-light);
-  --color-secondary: var(--secondary);
-  --color-secondary-dark: var(--secondary-dark);
-  --color-secondary-light: var(--secondary-light);
-  --color-accent: var(--accent);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-border: var(--border);
-  --font-sans: system-ui, -apple-system, sans-serif;
 }
 
 body {
@@ -44,12 +24,10 @@ body {
   font-family: system-ui, -apple-system, sans-serif;
 }
 
-/* Smooth scrolling */
 html {
   scroll-behavior: smooth;
 }
 
-/* Better focus styles for accessibility */
 *:focus-visible {
   outline: 2px solid var(--ring);
   outline-offset: 2px;
