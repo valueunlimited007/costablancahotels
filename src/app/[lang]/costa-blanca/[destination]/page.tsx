@@ -210,15 +210,22 @@ export default async function DestinationPage({ params }: PageProps) {
                 )}
               </div>
 
-              {/* Location Map Placeholder */}
+              {/* Location Map */}
               <div className="mt-12 bg-gray-100 rounded-xl p-6">
                 <h3 className="text-xl font-bold text-gray-900 mb-4">
                   {getLocationTitle(lang)}
                 </h3>
-                <div className="aspect-video bg-gray-200 rounded-lg flex items-center justify-center">
-                  <p className="text-gray-500">
-                    {trans.name}: {destination.coordinates.lat.toFixed(4)}°N, {Math.abs(destination.coordinates.lng).toFixed(4)}°{destination.coordinates.lng >= 0 ? 'E' : 'W'}
-                  </p>
+                <div className="aspect-video rounded-lg overflow-hidden">
+                  <iframe
+                    src={`https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d50000!2d${destination.coordinates.lng}!3d${destination.coordinates.lat}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1s${lang}!2ses!4v1702000000000!5m2!1s${lang}!2ses`}
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title={`${trans.name} ${getLocationTitle(lang)}`}
+                  />
                 </div>
               </div>
             </div>
