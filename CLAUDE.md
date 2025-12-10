@@ -1,5 +1,29 @@
 # CLAUDE.md - AI Assistant Guide for costablancahotels
 
+## Claude Rules (MANDATORY)
+
+**These rules must be followed for ALL tasks:**
+
+1. **Plan First**: Think through the problem, read the codebase for relevant files, and write a plan to `tasks/todo.md`
+
+2. **Create Checkable Todo List**: The plan should have a list of todo items that you can check off as you complete them
+
+3. **Get Approval Before Starting**: Before you begin working, check in with the user to verify the plan
+
+4. **Track Progress**: Work through the todo items, marking them as complete as you go
+
+5. **Communicate Changes**: Every step of the way, give a high-level explanation of what changes you made
+
+6. **SIMPLICITY IS KEY**: Make every task and code change as simple as possible. Avoid massive or complex changes. Every change should impact as little code as possible. Everything is about simplicity.
+
+7. **Document Completion**: Add a review section to the `tasks/todo.md` file with a summary of the changes made and any other relevant information
+
+8. **NO LAZINESS**: DO NOT BE LAZY. NEVER BE LAZY. If there is a bug, find the ROOT CAUSE and fix it. NO temporary fixes. You are a senior developer. NEVER be lazy.
+
+9. **MINIMAL IMPACT**: Make all fixes and code changes as simple as humanly possible. They should only impact necessary code relevant to the task and nothing else. Impact as little code as possible. The goal is to NOT introduce any bugs. It's all about simplicity.
+
+---
+
 ## Project Overview
 
 **costablancahotels** is a web platform designed to serve as "Your Gateway to Costa Blanca" - a hotel discovery and information portal for the Costa Blanca region of Spain.
@@ -15,6 +39,8 @@
 costablancahotels/
 ├── README.md          # Project description and overview
 ├── CLAUDE.md          # This file - AI assistant guidelines
+├── tasks/             # Task planning and tracking
+│   └── todo.md        # Current task plan with checkable items
 └── (awaiting setup)   # Project files to be added
 ```
 
@@ -29,6 +55,8 @@ costablancahotels/
 │   └── styles/        # CSS/styling files
 ├── public/            # Static assets
 ├── tests/             # Test files
+├── tasks/             # Task planning and tracking
+│   └── todo.md        # Current task plan with checkable items
 ├── docs/              # Documentation
 ├── .github/           # GitHub workflows and templates
 ├── package.json       # Node.js dependencies
@@ -180,3 +208,5 @@ When contributing to this project:
 ### December 2025
 - Initial repository created
 - CLAUDE.md file created for AI assistant guidance
+- Added mandatory Claude Rules for workflow (plan first, simplicity, no laziness)
+- Added `tasks/todo.md` structure for task tracking
