@@ -1,127 +1,87 @@
-// Unsplash API integration for destination images
-const UNSPLASH_ACCESS_KEY = process.env.NEXT_PUBLIC_UNSPLASH_ACCESS_KEY || '3-LihaBRFW802POVEhd1tHHV_nriTEy0UD85TD40bRM';
+// Image URLs from Lovable project
+const LOVABLE_BASE_URL = 'https://5e96b21a-1279-467d-ae4e-1fcd10981949.lovableproject.com';
 
-// Pre-defined Unsplash image IDs for Costa Blanca destinations
-// Using specific images that match each destination
-export const destinationImages: Record<string, { id: string; url: string; photographer: string }> = {
-  benidorm: {
-    id: 'rChFUMwAe7E',
-    url: 'https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?w=800&q=80',
-    photographer: 'Unsplash',
-  },
-  javea: {
-    id: 'Nyvq2juw4_o',
-    url: 'https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=800&q=80',
-    photographer: 'Unsplash',
-  },
-  'la-zenia': {
-    id: 'KMn4VEeEPR8',
-    url: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80',
-    photographer: 'Unsplash',
-  },
-  alicante: {
-    id: 'hpTH5b6mo2s',
-    url: 'https://images.unsplash.com/photo-1539037116277-4db20889f2d4?w=800&q=80',
-    photographer: 'Unsplash',
-  },
-  calpe: {
-    id: '1rBg5YSi00c',
-    url: 'https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?w=800&q=80',
-    photographer: 'Unsplash',
-  },
-  altea: {
-    id: 'oXo6IvDnkqc',
-    url: 'https://images.unsplash.com/photo-1523531294919-4bcd7c65e216?w=800&q=80',
-    photographer: 'Unsplash',
-  },
-  torrevieja: {
-    id: 'Siuwr3uCir0',
-    url: 'https://images.unsplash.com/photo-1534190760961-74e8c1c5c3da?w=800&q=80',
-    photographer: 'Unsplash',
-  },
-  denia: {
-    id: '2TLREZi7BUg',
-    url: 'https://images.unsplash.com/photo-1548574505-5e239809ee19?w=800&q=80',
-    photographer: 'Unsplash',
-  },
-  // Secondary destinations - generic Mediterranean/beach images
-  albir: {
-    id: 'default-beach-1',
-    url: 'https://images.unsplash.com/photo-1506929562872-bb421503ef21?w=800&q=80',
-    photographer: 'Unsplash',
-  },
-  benissa: {
-    id: 'default-coast-1',
-    url: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?w=800&q=80',
-    photographer: 'Unsplash',
-  },
-  'cabo-roig': {
-    id: 'default-beach-2',
-    url: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80',
-    photographer: 'Unsplash',
-  },
-  campoamor: {
-    id: 'default-golf',
-    url: 'https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=800&q=80',
-    photographer: 'Unsplash',
-  },
-  'ciudad-quesada': {
-    id: 'default-spain-1',
-    url: 'https://images.unsplash.com/photo-1509840841025-9088ba78a826?w=800&q=80',
-    photographer: 'Unsplash',
-  },
-  'guardamar-del-segura': {
-    id: 'default-dunes',
-    url: 'https://images.unsplash.com/photo-1473186578172-c141e6798cf4?w=800&q=80',
-    photographer: 'Unsplash',
-  },
-  'la-manga': {
-    id: 'default-lagoon',
-    url: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80',
-    photographer: 'Unsplash',
-  },
-  'playa-flamenca': {
-    id: 'default-beach-3',
-    url: 'https://images.unsplash.com/photo-1520942702018-0862200e6873?w=800&q=80',
-    photographer: 'Unsplash',
-  },
-  'santa-pola': {
-    id: 'default-fishing',
-    url: 'https://images.unsplash.com/photo-1545579133-99bb5ab189bd?w=800&q=80',
-    photographer: 'Unsplash',
-  },
-  villajoyosa: {
-    id: 'default-colorful',
-    url: 'https://images.unsplash.com/photo-1504019347908-b45f9b0b8dd5?w=800&q=80',
-    photographer: 'Unsplash',
-  },
+// Destination card images
+export const destinationImages: Record<string, string> = {
+  benidorm: `${LOVABLE_BASE_URL}/destinations/benidorm.jpg`,
+  javea: `${LOVABLE_BASE_URL}/destinations/javea.jpg`,
+  'la-zenia': `${LOVABLE_BASE_URL}/destinations/lazenia.jpg`,
+  alicante: `${LOVABLE_BASE_URL}/destinations/alicante.webp`,
+  calpe: `${LOVABLE_BASE_URL}/destinations/calpe.jpg`,
+  altea: `${LOVABLE_BASE_URL}/destinations/altea.webp`,
+  torrevieja: `${LOVABLE_BASE_URL}/destinations/torrevieja.webp`,
+  denia: `${LOVABLE_BASE_URL}/destinations/denia.png`,
+  albir: `${LOVABLE_BASE_URL}/destinations/albir.webp`,
+  benissa: `${LOVABLE_BASE_URL}/destinations/benissa.jpg`,
+  'cabo-roig': `${LOVABLE_BASE_URL}/destinations/cabo-roig.jpg`,
+  campoamor: `${LOVABLE_BASE_URL}/destinations/campoamor.jpg`,
+  'ciudad-quesada': `${LOVABLE_BASE_URL}/destinations/ciudad-quesada.jpg`,
+  'guardamar-del-segura': `${LOVABLE_BASE_URL}/destinations/guardamar-del-segura.jpg`,
+  'la-manga': `${LOVABLE_BASE_URL}/destinations/la-manga.jpg`,
+  'playa-flamenca': `${LOVABLE_BASE_URL}/destinations/playa-flamenca.webp`,
+  'santa-pola': `${LOVABLE_BASE_URL}/destinations/santa-pola.jpg`,
+  villajoyosa: `${LOVABLE_BASE_URL}/destinations/villajoyosa.jpg`,
 };
 
-// Hero image for Costa Blanca hub
-export const heroImage = {
-  url: 'https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?w=1920&q=80',
-  photographer: 'Unsplash',
+// Hero images
+export const heroImages = {
+  costaBlanca: `${LOVABLE_BASE_URL}/src/assets/costa-blanca-hero.webp`,
+  benidorm: `${LOVABLE_BASE_URL}/src/assets/benidorm-hero.jpg`,
+  javea: `${LOVABLE_BASE_URL}/src/assets/javea-hero.jpg`,
+  laZenia: `${LOVABLE_BASE_URL}/src/assets/lazenia-hero.jpg`,
+};
+
+// Benidorm attraction images
+export const benidormImages = {
+  hero: `${LOVABLE_BASE_URL}/src/assets/benidorm-hero.jpg`,
+  oldTown: `${LOVABLE_BASE_URL}/assets/benidorm/old-town.jpg`,
+  playaLevante: `${LOVABLE_BASE_URL}/assets/benidorm/playa-levante.jpg`,
+  playaPoniente: `${LOVABLE_BASE_URL}/assets/benidorm/playa-poniente.jpg`,
+  balconMediterraneo: `${LOVABLE_BASE_URL}/assets/benidorm/balcon-mediterraneo.jpg`,
+  terraMitica: `${LOVABLE_BASE_URL}/assets/benidorm/terra-mitica.jpg`,
+  aqualandia: `${LOVABLE_BASE_URL}/assets/benidorm/aqualandia.jpg`,
+  mundomar: `${LOVABLE_BASE_URL}/assets/benidorm/mundomar.jpg`,
+  terraNatura: `${LOVABLE_BASE_URL}/assets/benidorm/terra-natura.jpg`,
+  market: `${LOVABLE_BASE_URL}/assets/benidorm/market.jpg`,
+  cableCar: `${LOVABLE_BASE_URL}/assets/benidorm/cable-car.jpg`,
+};
+
+// Javea attraction images
+export const javeaImages = {
+  hero: `${LOVABLE_BASE_URL}/src/assets/javea-hero.jpg`,
+  playaArenal: `${LOVABLE_BASE_URL}/assets/javea/playa-del-arenal.jpg`,
+  granadella: `${LOVABLE_BASE_URL}/assets/javea/playa-la-granadella.jpg`,
+  caboSanAntonio: `${LOVABLE_BASE_URL}/assets/javea/cabo-san-antonio.jpg`,
+  covaTallada: `${LOVABLE_BASE_URL}/assets/javea/la-cova-tallada.jpg`,
+  faro: `${LOVABLE_BASE_URL}/assets/javea/faro-de-cabo-de-la-nao.jpg`,
+  portixol: `${LOVABLE_BASE_URL}/assets/javea/cala-de-portixol.jpg`,
+};
+
+// La Zenia attraction images
+export const laZeniaImages = {
+  hero: `${LOVABLE_BASE_URL}/src/assets/lazenia-hero.jpg`,
+  playaLaZenia: `${LOVABLE_BASE_URL}/assets/la-zenia/playa-la-zenia.jpg`,
+  zeniaBoulevard: `${LOVABLE_BASE_URL}/assets/la-zenia/zenia-boulevard.jpg`,
+  aquopolis: `${LOVABLE_BASE_URL}/assets/la-zenia/aquopolis.jpg`,
+  marinaCaboRoig: `${LOVABLE_BASE_URL}/assets/la-zenia/marina-cabo-roig.jpg`,
+  lasSalinas: `${LOVABLE_BASE_URL}/assets/la-zenia/las-salinas.jpg`,
 };
 
 export function getDestinationImage(slug: string): string {
-  return destinationImages[slug]?.url || destinationImages['albir'].url;
+  return destinationImages[slug] || destinationImages['benidorm'];
 }
 
-// Function to fetch image from Unsplash API (for future dynamic use)
-export async function fetchUnsplashImage(query: string): Promise<string> {
-  try {
-    const response = await fetch(
-      `https://api.unsplash.com/search/photos?query=${encodeURIComponent(query)}&per_page=1`,
-      {
-        headers: {
-          Authorization: `Client-ID ${UNSPLASH_ACCESS_KEY}`,
-        },
-      }
-    );
-    const data = await response.json();
-    return data.results[0]?.urls?.regular || heroImage.url;
-  } catch (error) {
-    console.error('Failed to fetch Unsplash image:', error);
-    return heroImage.url;
+export function getHeroImage(destination?: string): string {
+  if (!destination) return heroImages.costaBlanca;
+
+  switch (destination) {
+    case 'benidorm':
+      return heroImages.benidorm;
+    case 'javea':
+      return heroImages.javea;
+    case 'la-zenia':
+      return heroImages.laZenia;
+    default:
+      return destinationImages[destination] || heroImages.costaBlanca;
   }
 }
