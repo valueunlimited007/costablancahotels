@@ -1,3 +1,4 @@
+import React from 'react';
 import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -7,6 +8,7 @@ import { t } from '@/lib/translations';
 import { destinations, getDestination } from '@/data/destinations';
 import { getHotelsSearchLink } from '@/lib/affiliate';
 import { getHeroImage } from '@/lib/images';
+import { getDestinationContent, DestinationContent as DestContent } from '@/data/destination-content';
 
 interface PageProps {
   params: Promise<{
@@ -68,6 +70,8 @@ export default async function DestinationPage({ params }: PageProps) {
   const trans = destination.translations[lang];
   const heroImage = getHeroImage(slug);
   const affiliateUrl = getHotelsSearchLink(lang, slug, 'destination-page');
+  const destinationContent = getDestinationContent(slug);
+  const contentTrans = destinationContent?.translations[lang];
 
   // Schema.org structured data
   const schemaData = {
@@ -111,6 +115,20 @@ export default async function DestinationPage({ params }: PageProps) {
     ],
   };
 
+  // FAQ Schema (if FAQs exist)
+  const faqSchema = contentTrans?.faqs && contentTrans.faqs.length > 0 ? {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: contentTrans.faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer,
+      },
+    })),
+  } : null;
+
   return (
     <>
       {/* Schema.org JSON-LD */}
@@ -122,6 +140,12 @@ export default async function DestinationPage({ params }: PageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
+      {faqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
 
       {/* Hero Section */}
       <section className="relative h-[50vh] min-h-[400px] flex items-end">
@@ -302,9 +326,196 @@ export default async function DestinationPage({ params }: PageProps) {
 
 // Helper function for extended destination content
 function DestinationContent({ slug, locale }: { slug: string; locale: Locale }) {
-  // This would ideally come from a CMS or more detailed data source
-  // For now, we return null - content can be added later
-  return null;
+  const content = getDestinationContent(slug);
+  const trans = content?.translations[locale];
+
+  if (!trans) {
+    return null;
+  }
+
+  return (
+    <div className="space-y-12">
+      {/* Long Description */}
+      <div className="prose prose-lg max-w-none">
+        {trans.longDescription.split('\n\n').map((paragraph, index) => (
+          <p key={index} className="text-gray-700 leading-relaxed">
+            {paragraph}
+          </p>
+        ))}
+      </div>
+
+      {/* Best Time to Visit */}
+      <div className="bg-amber-50 rounded-xl p-6">
+        <h3 className="text-xl font-bold text-gray-900 mb-3 flex items-center">
+          <svg className="w-6 h-6 text-amber-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+          </svg>
+          {getBestTimeTitle(locale)}
+        </h3>
+        <p className="text-gray-700">{trans.bestTimeToVisit}</p>
+      </div>
+
+      {/* How to Get There */}
+      <div className="bg-blue-50 rounded-xl p-6">
+        <h3 className="text-xl font-bold text-gray-900 mb-3 flex items-center">
+          <svg className="w-6 h-6 text-blue-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+          </svg>
+          {getHowToGetThereTitle(locale)}
+        </h3>
+        <p className="text-gray-700">{trans.howToGetThere}</p>
+      </div>
+
+      {/* Attractions */}
+      {trans.attractions && trans.attractions.length > 0 && (
+        <div>
+          <h3 className="text-2xl font-bold text-gray-900 mb-6">{getAttractionsTitle(locale)}</h3>
+          <div className="grid md:grid-cols-2 gap-4">
+            {trans.attractions.map((attraction, index) => (
+              <div key={index} className="bg-white border border-gray-200 rounded-xl p-5 hover:shadow-md transition-shadow">
+                <div className="flex items-start">
+                  <div className={`p-2 rounded-lg mr-4 ${getAttractionTypeColor(attraction.type)}`}>
+                    {getAttractionIcon(attraction.type)}
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-gray-900 mb-1">{attraction.name}</h4>
+                    <p className="text-sm text-gray-600">{attraction.description}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Beaches */}
+      {trans.beaches && trans.beaches.length > 0 && (
+        <div>
+          <h3 className="text-2xl font-bold text-gray-900 mb-4">{getBeachesTitle(locale)}</h3>
+          <div className="flex flex-wrap gap-3">
+            {trans.beaches.map((beach, index) => (
+              <span key={index} className="inline-flex items-center px-4 py-2 bg-cyan-100 text-cyan-800 rounded-full text-sm font-medium">
+                <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5" />
+                </svg>
+                {beach}
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* FAQs */}
+      {trans.faqs && trans.faqs.length > 0 && (
+        <div>
+          <h3 className="text-2xl font-bold text-gray-900 mb-6">{getFaqTitle(locale)}</h3>
+          <div className="space-y-4">
+            {trans.faqs.map((faq, index) => (
+              <div key={index} className="bg-gray-50 rounded-xl p-5">
+                <h4 className="font-semibold text-gray-900 mb-2 flex items-start">
+                  <span className="text-primary mr-2">Q:</span>
+                  {faq.question}
+                </h4>
+                <p className="text-gray-700 pl-6">{faq.answer}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function getBestTimeTitle(locale: Locale): string {
+  const titles: Record<Locale, string> = {
+    sv: 'Bästa tiden att besöka',
+    en: 'Best Time to Visit',
+    de: 'Beste Reisezeit',
+    no: 'Beste tid å besøke',
+  };
+  return titles[locale];
+}
+
+function getHowToGetThereTitle(locale: Locale): string {
+  const titles: Record<Locale, string> = {
+    sv: 'Hur tar du dig hit',
+    en: 'How to Get There',
+    de: 'Anreise',
+    no: 'Hvordan komme dit',
+  };
+  return titles[locale];
+}
+
+function getAttractionsTitle(locale: Locale): string {
+  const titles: Record<Locale, string> = {
+    sv: 'Sevärdheter & Aktiviteter',
+    en: 'Attractions & Activities',
+    de: 'Sehenswürdigkeiten & Aktivitäten',
+    no: 'Severdigheter & Aktiviteter',
+  };
+  return titles[locale];
+}
+
+function getBeachesTitle(locale: Locale): string {
+  const titles: Record<Locale, string> = {
+    sv: 'Stränder',
+    en: 'Beaches',
+    de: 'Strände',
+    no: 'Strender',
+  };
+  return titles[locale];
+}
+
+function getFaqTitle(locale: Locale): string {
+  const titles: Record<Locale, string> = {
+    sv: 'Vanliga frågor',
+    en: 'Frequently Asked Questions',
+    de: 'Häufig gestellte Fragen',
+    no: 'Ofte stilte spørsmål',
+  };
+  return titles[locale];
+}
+
+function getAttractionTypeColor(type: string): string {
+  const colors: Record<string, string> = {
+    beach: 'bg-cyan-100 text-cyan-600',
+    nature: 'bg-green-100 text-green-600',
+    culture: 'bg-purple-100 text-purple-600',
+    entertainment: 'bg-pink-100 text-pink-600',
+    shopping: 'bg-orange-100 text-orange-600',
+  };
+  return colors[type] || 'bg-gray-100 text-gray-600';
+}
+
+function getAttractionIcon(type: string): React.ReactNode {
+  const icons: Record<string, React.ReactNode> = {
+    beach: (
+      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5" />
+      </svg>
+    ),
+    nature: (
+      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+      </svg>
+    ),
+    culture: (
+      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+      </svg>
+    ),
+    entertainment: (
+      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+    ),
+    shopping: (
+      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+      </svg>
+    ),
+  };
+  return icons[type] || icons.culture;
 }
 
 // Localized helper functions
