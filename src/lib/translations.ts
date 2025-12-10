@@ -17,6 +17,7 @@ export type TranslationKey =
   | 'destinations.featured'
   | 'hotel.bookNow'
   | 'hotel.viewHotels'
+  | 'hotel.searchHotels'
   | 'hotel.perNight'
   | 'hotel.rating'
   | 'footer.rights'
@@ -42,6 +43,7 @@ const translations: Record<Locale, Record<TranslationKey, string>> = {
     'destinations.featured': 'Utvald',
     'hotel.bookNow': 'Boka nu',
     'hotel.viewHotels': 'Se hotell',
+    'hotel.searchHotels': 'Sök hotell',
     'hotel.perNight': '/natt',
     'hotel.rating': 'Betyg',
     'footer.rights': 'Alla rättigheter förbehållna',
@@ -66,6 +68,7 @@ const translations: Record<Locale, Record<TranslationKey, string>> = {
     'destinations.featured': 'Featured',
     'hotel.bookNow': 'Book now',
     'hotel.viewHotels': 'View hotels',
+    'hotel.searchHotels': 'Search hotels',
     'hotel.perNight': '/night',
     'hotel.rating': 'Rating',
     'footer.rights': 'All rights reserved',
@@ -90,6 +93,7 @@ const translations: Record<Locale, Record<TranslationKey, string>> = {
     'destinations.featured': 'Empfohlen',
     'hotel.bookNow': 'Jetzt buchen',
     'hotel.viewHotels': 'Hotels anzeigen',
+    'hotel.searchHotels': 'Hotels suchen',
     'hotel.perNight': '/Nacht',
     'hotel.rating': 'Bewertung',
     'footer.rights': 'Alle Rechte vorbehalten',
@@ -114,6 +118,7 @@ const translations: Record<Locale, Record<TranslationKey, string>> = {
     'destinations.featured': 'Utvalgt',
     'hotel.bookNow': 'Bestill nå',
     'hotel.viewHotels': 'Se hoteller',
+    'hotel.searchHotels': 'Søk hoteller',
     'hotel.perNight': '/natt',
     'hotel.rating': 'Vurdering',
     'footer.rights': 'Alle rettigheter forbeholdt',
