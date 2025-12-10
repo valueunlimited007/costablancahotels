@@ -29,5 +29,11 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return children;
+  return (
+    <html lang="sv">
+      <body className="min-h-screen flex flex-col">
+        {children}
+      </body>
+    </html>
+  );
 }
