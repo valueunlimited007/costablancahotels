@@ -17,12 +17,10 @@ export default async function LangLayout({
   const locale: Locale = isValidLocale(lang) ? lang : 'sv';
 
   return (
-    <html lang={locale}>
-      <body className="min-h-screen flex flex-col">
-        <Navigation locale={locale} />
-        <main className="flex-1">{children}</main>
-        <Footer locale={locale} />
-      </body>
-    </html>
+    <>
+      <Navigation locale={locale} />
+      <main className="flex-1">{children}</main>
+      <Footer locale={locale} />
+    </>
   );
 }
