@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/sv/costa-blanca",
+      "permanent": false
+    }
+  ]
+}
