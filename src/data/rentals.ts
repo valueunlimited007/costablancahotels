@@ -177,7 +177,7 @@ export const rentals: Rental[] = [
     },
     amenities: ['wifi', 'air-conditioning', 'kitchen', 'balcony', 'sea-view', 'washing-machine', 'elevator'],
     images: {
-      main: '/images/rentals/benidorm/levante-beachfront-5th-floor.jpg',
+      main: '/images/rentals/benidorm/levante-beachfront-5th-floor.avif',
     },
     sourceUrl: 'https://www.vrbo.com/en-gb/p8345939',
     vrboPropertyId: '8345939',
@@ -323,7 +323,7 @@ export const rentals: Rental[] = [
     },
     amenities: ['wifi', 'air-conditioning', 'kitchen', 'balcony', 'washing-machine', 'elevator'],
     images: {
-      main: '/images/rentals/benidorm/levante-luxury-1bed.jpg',
+      main: '/images/rentals/benidorm/levante-luxury-1bed.avif',
     },
     sourceUrl: 'https://www.vrbo.com/en-gb/p11178051',
     vrboPropertyId: '11178051',
@@ -396,7 +396,7 @@ export const rentals: Rental[] = [
     },
     amenities: ['wifi', 'air-conditioning', 'kitchen', 'balcony', 'sea-view', 'washing-machine', 'shared-pool'],
     images: {
-      main: '/images/rentals/benidorm/poniente-luxury-quiet.jpg',
+      main: '/images/rentals/benidorm/poniente-luxury-quiet.avif',
     },
     sourceUrl: 'https://www.vrbo.com/2599191ha',
     vrboPropertyId: '2599191',
@@ -469,7 +469,7 @@ export const rentals: Rental[] = [
     },
     amenities: ['wifi', 'air-conditioning', 'kitchen', 'terrace', 'sea-view', 'gym', 'washing-machine', 'parking'],
     images: {
-      main: '/images/rentals/benidorm/poniente-3bed-entertainment.jpg',
+      main: '/images/rentals/benidorm/poniente-3bed-entertainment.avif',
     },
     sourceUrl: 'https://www.vrbo.com/en-gb/p6947893',
     vrboPropertyId: '6947893',
@@ -615,7 +615,7 @@ export const rentals: Rental[] = [
     },
     amenities: ['private-pool', 'wifi', 'air-conditioning', 'kitchen', 'terrace', 'bbq', 'parking'],
     images: {
-      main: '/images/rentals/benidorm/villa-luxury-25-jacuzzi.jpg',
+      main: '/images/rentals/benidorm/villa-luxury-25-jacuzzi.avif',
     },
     sourceUrl: 'https://www.vrbo.com/8090176ha',
     vrboPropertyId: '8090176',
@@ -688,7 +688,7 @@ export const rentals: Rental[] = [
     },
     amenities: ['wifi', 'air-conditioning', 'kitchen', 'balcony', 'washing-machine', 'elevator'],
     images: {
-      main: '/images/rentals/benidorm/poniente-budget-apartment.jpg',
+      main: '/images/rentals/benidorm/poniente-budget-apartment.avif',
     },
     sourceUrl: 'https://www.vrbo.com/6202006ha',
     vrboPropertyId: '6202006',
