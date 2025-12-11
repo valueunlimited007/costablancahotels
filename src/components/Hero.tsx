@@ -13,7 +13,7 @@ export function Hero({ locale }: HeroProps) {
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
-          src="https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?w=1920&q=80"
+          src="/images/heroes/costa-blanca.webp"
           alt="Costa Blanca beach"
           fill
           className="object-cover"
