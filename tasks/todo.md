@@ -1,119 +1,164 @@
-# Task Plan: CostaBlancaHotels.com Rebuild
+# Costa Blanca Hotels - Projektplan & Vision
 
-## Current Task
-Bygga om costablancahotels.com med Next.js SSG - en multi-language affiliate reseguide för Costa Blanca-regionen.
+## Vision
+Bli **den självklara resursen** för alla som planerar en resa till Costa Blanca. En sajt som kombinerar:
+- **Hotellbokning** (affiliate via Hotels.com/CJ)
+- **Lokal kunskap** (restauranger, aktiviteter, praktisk info)
+- **Kulturell insikt** (högtider, event, lokala tips)
+- **Språkanpassning** (sv, en, de, no + framtida fi, dk, nl)
 
-## Projektöversikt
-- **Mål:** Skapa en värdefull reseguide som genererar affiliate-intäkter via Hotels.com/CJ
-- **Målgrupper:** Svenska, engelska, tyska och norska turister
-- **Tech Stack:** Next.js 16, TypeScript, Tailwind CSS (ingen databas - statisk data)
-
----
-
-## Fas 1: Projektgrundläggning
-- [x] 1.1 Initiera Next.js 14 projekt med TypeScript och Tailwind CSS
-- [x] 1.2 Skapa grundläggande mappstruktur (app/, lib/, components/, data/)
-- [x] 1.3 Konfigurera .gitignore, .env.example
-- [x] 1.4 Sätta upp Tailwind CSS konfiguration med Mediterranean design tokens
-
-## Fas 2: Multi-Language Routing
-- [x] 2.1 Skapa i18n-konfiguration (sv, en, de, no)
-- [x] 2.2 Implementera [lang] dynamisk routing
-- [x] 2.3 Skapa translations-struktur för UI-texter (4 språk)
-- [x] 2.4 Implementera language switcher i Navigation
-
-## Fas 3: Layout & Navigation
-- [x] 3.1 Skapa RootLayout med metadata
-- [x] 3.2 Bygga Navigation-komponent (responsiv, med språkväljare)
-- [x] 3.3 Bygga Footer-komponent med destinations-länkar
-
-## Fas 4: Hub-sida (Costa Blanca)
-- [x] 4.1 Skapa /[lang]/costa-blanca hub-sida
-- [x] 4.2 Bygga Hero-komponent med statistik
-- [x] 4.3 Bygga DestinationsGrid-komponent (visa 18 destinationer)
-- [x] 4.4 Statisk data för alla 18 destinationer (TypeScript)
-
-## Fas 5: CJ Affiliate Integration
-- [x] 5.1 Konfigurera CJ credentials (PID: 101611980, CID: 7427884)
-- [x] 5.2 Skapa affiliate link generator med SubID tracking
-- [x] 5.3 Konfigurera AIDs per region (sv, en, de, no)
+**Affärsmodell:** Affiliate-provision från hotellbokningar + eventuellt framtida annonsintäkter.
 
 ---
 
-## Nästa steg (ej påbörjat)
-- [ ] Skapa destination-detaljsidor (/costa-blanca/[destination])
-- [ ] Skapa hotellsidor med affiliate-knappar
-- [ ] Implementera SEO (JSON-LD schema, hreflang, sitemap)
-- [ ] Lägg till bilder för destinationer
+## Nuvarande Status (Dec 2025)
+- ✅ Next.js 14 med SSG
+- ✅ 4 språk (sv, en, de, no)
+- ✅ 18 destinationer med bilder
+- ✅ CJ Affiliate integration (Hotels.com)
+- ✅ Google Maps på destinationssidor
+- ✅ Responsiv design
+- ⏳ Deployment via Netlify (preview)
+- ❌ Sitemap.xml (dynamisk)
+- ❌ Blogg/nyheter
+- ❌ Restauranger, aktiviteter
+- ❌ SEO-optimering komplett
 
 ---
 
-## Progress Notes
+## Fas 1: Teknisk SEO-grund (Prioritet: HÖG)
+> Mål: Google kan indexera och ranka alla sidor korrekt
 
-### 2025-12-10 - Initial Setup Complete
-- Initierade Next.js 16 projekt med TypeScript och Tailwind CSS
-- Skapade multi-language routing med 4 språk (sv, en, de, no)
-- Byggde Costa Blanca hub-sida med Hero och DestinationsGrid
-- Skapade Navigation och Footer komponenter
-- Lade till alla 18 destinationer med översättningar
-- Konfigurerade CJ Affiliate integration med alla AIDs
-- Svenska länkar för Benidorm, Javea, La Zenia pekar till .se-domäner
-- Byggde projektet framgångsrikt
-- Pushade till GitHub för Vercel-preview
+- [ ] 1.1 Skapa dynamisk sitemap.xml (alla språk + destinationer)
+- [ ] 1.2 Skapa robots.txt med sitemap-referens
+- [ ] 1.3 Lägg till hreflang-taggar på alla sidor
+- [ ] 1.4 Implementera kanoniska URLs
+- [ ] 1.5 Optimera meta-titlar och beskrivningar per destination
+- [ ] 1.6 Lägg till Schema.org (Organization, WebSite, BreadcrumbList)
+- [ ] 1.7 Skapa HTML-sajtkarta (/sitemap) för användare
+- [ ] 1.8 Konfigurera Google Analytics 4
 
 ---
 
-## Review
+## Fas 2: Innehållsstruktur (Prioritet: HÖG)
+> Mål: Mer värdefull content = högre ranking
 
-### Changes Made
-**Fas 1-5 genomförda:**
-- Next.js 16 projekt med App Router
-- Tailwind CSS med Mediterranean färgtema (cyan/turquoise + amber/gold)
-- Multi-language routing för sv, en, de, no
-- Costa Blanca hub-sida med Hero och 18 destinationer
-- CJ Affiliate länkgenerering med SubID tracking
-- Responsiv Navigation med språkväljare
-- Footer med destinations-länkar
+### 2.1 Destinationsinnehåll
+- [ ] Utöka varje destination med:
+  - [ ] Längre SEO-texter (500+ ord)
+  - [ ] Väder/klimat-sektion
+  - [ ] Transport/hur du tar dig dit
+  - [ ] Bästa tiden att besöka
+  - [ ] Unika FAQ per destination
 
-### Files Created
-```
-src/
-├── app/
-│   ├── [lang]/
-│   │   ├── layout.tsx (language layout)
-│   │   └── costa-blanca/
-│   │       └── page.tsx (hub page)
-│   ├── layout.tsx (root layout)
-│   ├── page.tsx (redirect to /sv/costa-blanca)
-│   └── globals.css (Tailwind + design tokens)
-├── components/
-│   ├── Navigation.tsx
-│   ├── Footer.tsx
-│   ├── Hero.tsx
-│   ├── DestinationCard.tsx
-│   └── DestinationsGrid.tsx
-├── data/
-│   └── destinations.ts (18 destinations)
-└── lib/
-    ├── i18n.ts (language config)
-    ├── translations.ts (UI strings)
-    └── affiliate.ts (CJ link generator)
-```
+### 2.2 Restauranger
+- [ ] Skapa datastruktur för restauranger
+- [ ] Restaurangsidor per destination
+- [ ] Kategorier: Spanskt, Svenskt, Fine dining, Budget
+- [ ] Schema.org Restaurant markup
 
-### Testing Done
-- `npm run build` - framgångsrik SSG för alla 4 språkvarianter
-- Statiska sidor genererade för /sv/, /en/, /de/, /no/costa-blanca
+### 2.3 Aktiviteter & Attraktioner
+- [ ] Skapa datastruktur för aktiviteter
+- [ ] Kategorier: Stränder, Natur, Kultur, Nöjen, Golf
+- [ ] Attraktionssidor med praktisk info
 
-### CJ Affiliate Configuration
-- **PID:** 101611980
-- **CID:** 7427884
-- **AIDs:**
-  - sv: 5275614 (Hotels.com Sweden)
-  - en: 5275597 (Hotels.com UK)
-  - de: 5275606 (Hotels.com Germany)
-  - no: 5275619 (Hotels.com Norway)
+### 2.4 Praktisk info (per målgrupp)
+- [ ] Flygtips per land (SAS, Norwegian, Ryanair)
+- [ ] Transfertjänster och taxi (anpassat per nationalitet)
+- [ ] Hyrbil-tips
+- [ ] Sjukvård och apotek
+- [ ] Svenska kyrkan, brittiska pubar, etc.
 
-### Additional Notes
-- Svenska destinationer Benidorm, Javea, La Zenia länkar till externa .se-sajter
-- Ingen databas behövs - all data är statisk TypeScript
-- Redo för Vercel deployment
+---
+
+## Fas 3: Blogg & Nyheter (Prioritet: MEDIUM)
+> Mål: Färskt innehåll + long-tail keywords
+
+- [ ] 3.1 Skapa blogg-infrastruktur (/[lang]/blog)
+- [ ] 3.2 MDX-support för blogginlägg
+- [ ] 3.3 Kategorier och taggar
+- [ ] 3.4 RSS-feed per språk
+
+### Innehållskalender (exempel)
+- Veckovis: Tips från Facebook-grupper
+- Högtider: Semana Santa, Midsommar för svenskar, Oktoberfest-resor för tyskar
+- Säsong: "Bästa vinterdestinationer", "Sommarens stränder"
+- Event: Flamencokvällar, lokala fiestas
+
+---
+
+## Fas 4: Intern länkning & UX (Prioritet: MEDIUM)
+> Mål: Användare och Google hittar allt enkelt
+
+- [ ] 4.1 Breadcrumbs på alla sidor
+- [ ] 4.2 "Relaterade destinationer" på varje sida
+- [ ] 4.3 "Nearby" baserat på koordinater
+- [ ] 4.4 Cross-linking mellan restauranger/hotell/aktiviteter
+- [ ] 4.5 Förbättrad Footer med alla kategorier
+- [ ] 4.6 Sökfunktion (statisk, client-side)
+
+---
+
+## Fas 5: Konvertering & Affiliate (Prioritet: MEDIUM)
+> Mål: Maximera klick till affiliate-partners
+
+- [ ] 5.1 Förbättrade CTA-knappar (A/B-testade designs)
+- [ ] 5.2 "Jämför hotellpriser" widget
+- [ ] 5.3 Hotell-highlights per destination
+- [ ] 5.4 "Populärt just nu" sektion
+- [ ] 5.5 Exit-intent för hotellsökning
+
+---
+
+## Fas 6: Fler språk (Prioritet: LÅG - framtida)
+> Mål: Bredda målgruppen
+
+- [ ] 6.1 Finska (fi) - stor skandinavisk marknad
+- [ ] 6.2 Danska (dk) - nära norska
+- [ ] 6.3 Holländska (nl) - stor turistgrupp
+
+---
+
+## Tekniska detaljer
+
+### Deployment
+- **Plattform:** Netlify
+- **Domän:** costablancahotels.com
+- **Build:** Next.js SSG (Static Site Generation)
+
+### Affiliate
+- **Partner:** CJ Affiliate / Hotels.com
+- **PID:** 101548506
+- **AID:** 13920931
+- **Tracking:** SubID med språk_destination_position
+
+### SEO-verktyg
+- Google Search Console: ✅ Konfigurerat
+- Google Analytics 4: ❌ Ej konfigurerat
+- Sitemap: ❌ Behöver skapas
+
+---
+
+## Progress Log
+
+### 2025-12-11
+- Fixat hero-bild till lokal costa-blanca.webp
+- Fixat PostCSS för Tailwind v3
+- Lagt till 18 lokala destinationsbilder
+- Fixat Google Maps embed
+- Fixat affiliate-länkar (korrekta CJ credentials)
+
+### 2025-12-10
+- Initial setup med Next.js 14
+- Multi-language routing (sv, en, de, no)
+- 18 destinationer med översättningar
+- CJ Affiliate integration
+
+---
+
+## Nästa åtgärder (prioriterat)
+1. **Sitemap.xml** - Kritiskt för indexering
+2. **Robots.txt** - Behövs för crawlers
+3. **Meta-optimering** - Unika titlar/beskrivningar
+4. **Schema.org** - Rich snippets i Google
+5. **Restauranger** - Mer content = mer trafik
