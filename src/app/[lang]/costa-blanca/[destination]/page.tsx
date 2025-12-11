@@ -6,7 +6,7 @@ import { notFound } from 'next/navigation';
 import { Locale, locales } from '@/lib/i18n';
 import { t } from '@/lib/translations';
 import { destinations, getDestination } from '@/data/destinations';
-import { getHotelsSearchLink } from '@/lib/affiliate';
+import { getHotelsSearchLink, getVrboSearchLink } from '@/lib/affiliate';
 import { getHeroImage } from '@/lib/images';
 import { getDestinationContent, DestinationContent as DestContent } from '@/data/destination-content';
 
@@ -108,6 +108,7 @@ export default async function DestinationPage({ params }: PageProps) {
   const trans = destination.translations[lang];
   const heroImage = getHeroImage(slug);
   const affiliateUrl = getHotelsSearchLink(lang, slug, 'destination-page');
+  const vrboUrl = getVrboSearchLink(lang, slug, 'destination-page');
   const destinationContent = getDestinationContent(slug);
   const contentTrans = destinationContent?.translations[lang];
 
@@ -282,7 +283,7 @@ export default async function DestinationPage({ params }: PageProps) {
                   href={affiliateUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block w-full text-center px-6 py-4 bg-primary text-white font-semibold rounded-full hover:bg-primary-dark transition-all shadow-lg hover:shadow-xl"
+                  className="block w-full text-center px-6 py-4 bg-primary text-white font-semibold rounded-full hover:bg-primary-dark transition-all shadow-lg hover:shadow-xl mb-3"
                 >
                   {t(lang, 'hotel.searchHotels')}
                   <svg
@@ -296,6 +297,29 @@ export default async function DestinationPage({ params }: PageProps) {
                       strokeLinejoin="round"
                       strokeWidth={2}
                       d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                    />
+                  </svg>
+                </a>
+
+                {/* VRBO - Vacation Rentals */}
+                <a
+                  href={vrboUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block w-full text-center px-6 py-3 bg-white border-2 border-primary text-primary font-semibold rounded-full hover:bg-primary/5 transition-all"
+                >
+                  {getVrboButtonText(lang)}
+                  <svg
+                    className="w-5 h-5 ml-2 inline"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
                     />
                   </svg>
                 </a>
@@ -816,6 +840,16 @@ function getReadMoreText(locale: Locale): string {
     en: 'Read more',
     de: 'Mehr lesen',
     no: 'Les mer',
+  };
+  return texts[locale];
+}
+
+function getVrboButtonText(locale: Locale): string {
+  const texts: Record<Locale, string> = {
+    sv: 'Lägenheter & Villor',
+    en: 'Apartments & Villas',
+    de: 'Ferienwohnungen & Villen',
+    no: 'Leiligheter & Villaer',
   };
   return texts[locale];
 }
