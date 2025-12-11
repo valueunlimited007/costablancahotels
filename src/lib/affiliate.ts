@@ -107,19 +107,19 @@ export function generateVrboLink(params: AffiliateParams): string {
   }
   const subId = subIdParts.join('_');
 
-  // Build the destination URL on VRBO
+  // Build the destination URL on VRBO - use simple format
   let destinationUrl = `https://${domain}`;
 
   if (destination) {
-    const destinationName = destination.replace(/-/g, '+');
-    destinationUrl += `/search/keywords:${encodeURIComponent(destinationName + ', Costa Blanca, Spain')}`;
+    // Format: benidorm-valencian-community-spain
+    const searchSlug = `${destination}-valencian-community-spain`;
+    destinationUrl += `/search/keywords:${searchSlug}`;
   } else {
-    destinationUrl += `/search/keywords:${encodeURIComponent('Costa Blanca, Spain')}`;
+    destinationUrl += `/search/keywords:costa-blanca-spain`;
   }
 
-  // Build CJ tracking URL
-  const encodedUrl = encodeURIComponent(destinationUrl);
-  const cjUrl = `https://www.anrdoezrs.net/click-${CJ_PID}-${advertiserId}?url=${encodedUrl}&sid=${subId}`;
+  // Build CJ tracking URL - don't double-encode
+  const cjUrl = `https://www.anrdoezrs.net/click-${CJ_PID}-${advertiserId}?url=${encodeURIComponent(destinationUrl)}&sid=${subId}`;
 
   return cjUrl;
 }
