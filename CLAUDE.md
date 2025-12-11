@@ -32,6 +32,8 @@
 
 9. **MINIMAL PÅVERKAN**: Gör alla fixar så enkla som möjligt. De ska bara påverka nödvändig kod. Målet är att INTE introducera buggar.
 
+10. **ALDRIG HITTA PÅ DATA**: Du får ALDRIG hitta på hotell, restauranger, aktiviteter, lägenheter eller andra boenden som inte finns på riktigt. All data MÅSTE vara verifierad och verklig. Fabricerad data förstör trovärdigheten. Vid osäkerhet - verifiera via webbsökning.
+
 ---
 
 ## Projektöversikt

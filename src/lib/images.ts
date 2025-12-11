@@ -25,11 +25,11 @@ export const destinationImages: Record<string, string> = {
   villajoyosa: '/images/destinations/villajoyosa.jpg',
 };
 
-// Hero images
+// Hero images - specific high-quality images for destination pages
 export const heroImages = {
   costaBlanca: '/images/heroes/costa-blanca.webp',
-  benidorm: '/images/destinations/benidorm.jpg',
-  javea: '/images/destinations/javea.jpg',
+  benidorm: '/images/heroes/benidorm-hero.jpg',
+  javea: '/images/heroes/javea-hero.jpg',
   laZenia: '/images/destinations/la-zenia.jpg',
   alicante: '/images/destinations/alicante.png',
   calpe: '/images/destinations/calpe.jpg',
