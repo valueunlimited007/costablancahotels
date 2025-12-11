@@ -1,212 +1,248 @@
-# CLAUDE.md - AI Assistant Guide for costablancahotels
+# CLAUDE.md - AI Assistant Guide for Costa Blanca Hotels
 
-## Claude Rules (MANDATORY)
+## Vision & Mission
 
-**These rules must be followed for ALL tasks:**
+**Vision:** Bli den självklara resursen för europeiska resenärer som planerar semester till Costa Blanca.
 
-1. **Plan First**: Think through the problem, read the codebase for relevant files, and write a plan to `tasks/todo.md`
+**Mission:** Erbjuda den mest kompletta, lokala och språkanpassade guiden för Costa Blanca - från hotellbokning till restaurangtips, aktiviteter och praktisk information.
 
-2. **Create Checkable Todo List**: The plan should have a list of todo items that you can check off as you complete them
-
-3. **Get Approval Before Starting**: Before you begin working, check in with the user to verify the plan
-
-4. **Track Progress**: Work through the todo items, marking them as complete as you go
-
-5. **Communicate Changes**: Every step of the way, give a high-level explanation of what changes you made
-
-6. **SIMPLICITY IS KEY**: Make every task and code change as simple as possible. Avoid massive or complex changes. Every change should impact as little code as possible. Everything is about simplicity.
-
-7. **Document Completion**: Add a review section to the `tasks/todo.md` file with a summary of the changes made and any other relevant information
-
-8. **NO LAZINESS**: DO NOT BE LAZY. NEVER BE LAZY. If there is a bug, find the ROOT CAUSE and fix it. NO temporary fixes. You are a senior developer. NEVER be lazy.
-
-9. **MINIMAL IMPACT**: Make all fixes and code changes as simple as humanly possible. They should only impact necessary code relevant to the task and nothing else. Impact as little code as possible. The goal is to NOT introduce any bugs. It's all about simplicity.
+**Affärsmodell:** Affiliate-intäkter primärt via Hotels.com/CJ, med potential för framtida annonsintäkter.
 
 ---
 
-## Project Overview
+## Claude Rules (MANDATORY)
 
-**costablancahotels** is a web platform designed to serve as "Your Gateway to Costa Blanca" - a hotel discovery and information portal for the Costa Blanca region of Spain.
+**Dessa regler MÅSTE följas för ALLA uppgifter:**
 
-### Current Status
-- **Phase**: Initial setup / Greenfield project
-- **Codebase State**: Empty - awaiting initial development
-- **Last Updated**: December 2025
+1. **Planera först**: Tänk igenom problemet, läs relevanta filer i kodbasen, och skriv en plan i `tasks/todo.md`
 
-## Repository Structure
+2. **Skapa checkbar todo-lista**: Planen ska ha en lista med uppgifter som kan bockas av
+
+3. **Få godkännande innan start**: Innan du börjar arbeta, stäm av med användaren för att verifiera planen
+
+4. **Spåra framsteg**: Arbeta igenom uppgifterna och markera dem som klara allt eftersom
+
+5. **Kommunicera ändringar**: Ge en kort förklaring av vad du ändrat i varje steg
+
+6. **ENKELHET ÄR NYCKELN**: Gör varje uppgift och kodändring så enkel som möjligt. Undvik massiva eller komplexa ändringar. Varje ändring ska påverka så lite kod som möjligt.
+
+7. **Dokumentera slutförande**: Lägg till en review-sektion i `tasks/todo.md` med en sammanfattning
+
+8. **INGEN LATHET**: Var INTE lat. Om det finns en bugg, hitta GRUNDORSAKEN och fixa den. INGA temporära lösningar.
+
+9. **MINIMAL PÅVERKAN**: Gör alla fixar så enkla som möjligt. De ska bara påverka nödvändig kod. Målet är att INTE introducera buggar.
+
+---
+
+## Projektöversikt
+
+**Costa Blanca Hotels** är en multi-language reseguide och hotellbokningsportal för Costa Blanca-regionen i Spanien.
+
+### Målgrupper
+| Språk | Marknad | Prioritet |
+|-------|---------|-----------|
+| Svenska (sv) | Sverige | HÖG |
+| Engelska (en) | UK, International | HÖG |
+| Tyska (de) | Tyskland, Österrike, Schweiz | HÖG |
+| Norska (no) | Norge | HÖG |
+| Finska (fi) | Finland | FRAMTIDA |
+| Danska (dk) | Danmark | FRAMTIDA |
+| Holländska (nl) | Nederländerna | FRAMTIDA |
+
+### Konkurrensstrategi
+- **TripAdvisor:** Vi är mer nischade och lokalt anpassade
+- **Lokala sajter:** Vi har fler språk och bättre UX
+- **Facebook-grupper:** Vi strukturerar deras kunskap till sökvänligt innehåll
+
+---
+
+## Tech Stack
+
+| Komponent | Teknologi | Kommentar |
+|-----------|-----------|-----------|
+| Framework | Next.js 14 (App Router) | SSG för prestanda & SEO |
+| Språk | TypeScript | Typsäkerhet |
+| Styling | Tailwind CSS v3 | Utility-first |
+| Deployment | Netlify | Enkel deploy, bra CDN |
+| Domän | costablancahotels.com | Produktionsdomän |
+| Analytics | Google Analytics 4 | (ej konfigurerat än) |
+| SEO | Google Search Console | Konfigurerat |
+
+### Affiliate-integration
+- **Partner:** CJ Affiliate / Hotels.com
+- **PID:** 101548506
+- **AID:** 13920931
+- **Tracking:** SubID-format: `{språk}_{destination}_{position}`
+
+---
+
+## Projektstruktur
 
 ```
 costablancahotels/
-├── README.md          # Project description and overview
-├── CLAUDE.md          # This file - AI assistant guidelines
-├── tasks/             # Task planning and tracking
-│   └── todo.md        # Current task plan with checkable items
-└── (awaiting setup)   # Project files to be added
+├── public/
+│   └── images/
+│       ├── destinations/     # Bilder per destination
+│       └── heroes/           # Hero-bilder
+├── src/
+│   ├── app/
+│   │   ├── [lang]/           # Språk-routing
+│   │   │   ├── costa-blanca/
+│   │   │   │   ├── page.tsx          # Hub-sida
+│   │   │   │   └── [destination]/
+│   │   │   │       └── page.tsx      # Destinationssidor
+│   │   │   └── layout.tsx
+│   │   ├── layout.tsx        # Root layout
+│   │   ├── page.tsx          # Redirect → /sv/costa-blanca
+│   │   └── globals.css
+│   ├── components/
+│   │   ├── Navigation.tsx
+│   │   ├── Footer.tsx
+│   │   ├── Hero.tsx
+│   │   ├── DestinationCard.tsx
+│   │   └── DestinationsGrid.tsx
+│   ├── data/
+│   │   ├── destinations.ts        # 18 destinationer
+│   │   └── destination-content.ts # Utökat innehåll
+│   └── lib/
+│       ├── i18n.ts           # Språkkonfiguration
+│       ├── translations.ts   # UI-strängar
+│       ├── affiliate.ts      # CJ länkgenerator
+│       └── images.ts         # Bildhantering
+├── tasks/
+│   └── todo.md               # Projektplan & progress
+├── CLAUDE.md                 # Denna fil
+└── package.json
 ```
 
-### Planned Structure (To Be Implemented)
-```
-costablancahotels/
-├── src/               # Source code
-│   ├── components/    # UI components
-│   ├── pages/         # Page components/routes
-│   ├── services/      # API and business logic
-│   ├── utils/         # Utility functions
-│   └── styles/        # CSS/styling files
-├── public/            # Static assets
-├── tests/             # Test files
-├── tasks/             # Task planning and tracking
-│   └── todo.md        # Current task plan with checkable items
-├── docs/              # Documentation
-├── .github/           # GitHub workflows and templates
-├── package.json       # Node.js dependencies
-├── tsconfig.json      # TypeScript configuration (if applicable)
-├── .gitignore         # Git ignore rules
-├── .env.example       # Environment variables template
-├── README.md          # Project documentation
-└── CLAUDE.md          # AI assistant guidelines
-```
+---
 
-## Development Guidelines
+## SEO-strategi
 
-### For AI Assistants
+### Prioriterade åtgärder
+1. **Sitemap.xml** - Dynamisk, alla språk och destinationer
+2. **Robots.txt** - Tillåt crawling, referera sitemap
+3. **Hreflang** - Korrekt språklänkning
+4. **Schema.org** - TouristDestination, Organization, BreadcrumbList
+5. **Meta-optimering** - Unika titlar/beskrivningar per sida
 
-When working on this project:
+### Innehållsstrategi
+- **Destinationer:** 500+ ord per destination, unika FAQ
+- **Restauranger:** Per destination, kategoriserade
+- **Aktiviteter:** Stränder, natur, kultur, golf
+- **Blogg:** Veckovisa uppdateringar, högtider, event
+- **Praktisk info:** Flyg, transfer, hyrbil (anpassat per nationalitet)
 
-1. **Technology Selection**: If the user hasn't specified a tech stack, recommend and discuss options before implementing. Common choices for hotel platforms include:
-   - Frontend: React, Next.js, Vue.js, or Astro
-   - Styling: Tailwind CSS, CSS Modules, or styled-components
-   - Backend: Node.js with Express, Next.js API routes, or similar
-   - Database: PostgreSQL, MongoDB, or a headless CMS
+### Intern länkning
+- Breadcrumbs på alla sidor
+- "Relaterade destinationer" baserat på närhet
+- Cross-linking mellan innehållstyper
+- Användar-sajtkarta (/sitemap)
 
-2. **Code Style Conventions** (to be enforced once code exists):
-   - Use consistent naming conventions (camelCase for JS/TS, kebab-case for files)
-   - Write self-documenting code with meaningful variable names
-   - Add JSDoc comments for complex functions
-   - Keep components small and focused
+---
 
-3. **Git Workflow**:
-   - Create feature branches from main
-   - Write descriptive commit messages
-   - Keep commits atomic and focused
-   - Push to designated branches only
+## Kommandon
 
-4. **Security Considerations**:
-   - Never commit secrets or API keys
-   - Validate user inputs
-   - Use environment variables for configuration
-   - Follow OWASP security guidelines
-
-### Setting Up the Project
-
-When initializing this project, ensure:
-
-1. **Create essential configuration files**:
-   - `package.json` with appropriate dependencies
-   - `.gitignore` for Node.js projects
-   - Environment configuration files
-
-2. **Establish code quality tools**:
-   - ESLint for linting
-   - Prettier for code formatting
-   - TypeScript for type safety (recommended)
-
-3. **Set up testing infrastructure**:
-   - Jest or Vitest for unit tests
-   - React Testing Library for component tests
-   - Cypress or Playwright for E2E tests (if applicable)
-
-## Domain Context
-
-### Costa Blanca Hotels Platform Features (Potential)
-- Hotel listings and search functionality
-- Hotel details with photos, amenities, and pricing
-- Location-based filtering (cities, beaches, attractions)
-- User reviews and ratings
-- Booking integration or inquiry forms
-- Multi-language support (Spanish, English at minimum)
-- Responsive design for mobile users
-
-### Key Entities
-- **Hotels**: Properties with rooms, amenities, location data
-- **Locations**: Cities, beaches, and attractions in Costa Blanca
-- **Reviews**: User-submitted ratings and feedback
-- **Bookings**: Reservation requests or integrations
-
-## Commands and Scripts
-
-*To be populated once package.json is created*
-
-Expected scripts:
 ```bash
-npm run dev          # Start development server
-npm run build        # Build for production
-npm run test         # Run test suite
-npm run lint         # Run linting
-npm run format       # Format code with Prettier
+npm run dev          # Starta utvecklingsserver
+npm run build        # Bygg för produktion (SSG)
+npm run start        # Kör produktionsbygge lokalt
+npm run lint         # Kör ESLint
 ```
 
-## Testing Strategy
+---
 
-*To be defined once testing framework is set up*
+## Kodkonventioner
 
-Recommended approach:
-- Unit tests for utility functions and services
-- Component tests for UI components
-- Integration tests for API routes
-- E2E tests for critical user flows (search, view hotel, inquiry)
+### Filnamn
+- Komponenter: `PascalCase.tsx` (Hero.tsx)
+- Utilities: `camelCase.ts` (affiliate.ts)
+- Data: `kebab-case.ts` (destinations.ts)
 
-## Environment Variables
+### Komponenter
+- Funktionella komponenter med TypeScript
+- Props-interface definierade ovanför komponenten
+- Server Components som default, 'use client' endast vid behov
 
-*To be documented once .env structure is established*
+### Translations
+- Alla UI-strängar i `translations.ts`
+- Använd `t(locale, 'key')` för översättningar
+- Lägg till nya nycklar i `TranslationKey` type
 
-Expected variables:
-```
-# Application
-NODE_ENV=development
-PORT=3000
+### Affiliate-länkar
+- Använd `getHotelsSearchLink(locale, destination, position)`
+- Position: 'hero', 'sidebar', 'cta', etc.
+- Alla externa länkar: `target="_blank" rel="noopener noreferrer"`
 
-# Database (if applicable)
-DATABASE_URL=
-
-# External APIs (if applicable)
-API_KEY=
-
-# Analytics (if applicable)
-ANALYTICS_ID=
-```
+---
 
 ## Deployment
 
-*To be configured*
+### Netlify
+- Push till GitHub-branch → automatisk preview
+- Merge till main → deploy till produktion
+- Domän: costablancahotels.com
 
-Potential deployment targets:
-- Vercel (recommended for Next.js)
-- Netlify
-- Railway
-- AWS/GCP/Azure
+### Miljövariabler (framtida)
+```
+NEXT_PUBLIC_GA_ID=        # Google Analytics 4
+NEXT_PUBLIC_DOMAIN=       # costablancahotels.com
+```
 
-## Contributing
+---
 
-When contributing to this project:
-1. Follow the established code conventions
-2. Write tests for new functionality
-3. Update documentation as needed
-4. Keep this CLAUDE.md file updated with any structural changes
+## Utvecklingsplan (faser)
 
-## Notes for AI Assistants
+### Fas 1: SEO-grund (PÅGÅENDE)
+- Sitemap.xml, robots.txt
+- Schema.org markup
+- Meta-optimering
+- Hreflang-taggar
 
-- This is a **greenfield project** - start by helping establish the foundation
-- Prioritize clean architecture and maintainability
-- Consider SEO requirements for a travel/hotel platform
-- Accessibility (a11y) should be a priority
-- Performance optimization matters for user experience
-- Internationalization (i18n) may be needed for Spanish/English
+### Fas 2: Innehåll
+- Restauranger per destination
+- Aktiviteter och attraktioner
+- Praktisk info (flyg, transfer, etc.)
+
+### Fas 3: Blogg
+- MDX-stöd för blogginlägg
+- Kategorier och taggar
+- RSS-feed per språk
+- Innehåll: högtider, event, lokala nyheter
+
+### Fas 4: UX-förbättringar
+- Sökfunktion (client-side)
+- Relaterade destinationer
+- Förbättrad navigation
+- Breadcrumbs
+
+### Fas 5: Fler språk (framtida)
+- Finska (fi)
+- Danska (dk)
+- Holländska (nl)
+
+---
+
+## Viktiga resurser
+
+- **Projektplan:** `tasks/todo.md`
+- **GitHub:** https://github.com/valueunlimited007/costablancahotels
+- **CJ Affiliate:** https://www.cj.com
+- **Google Search Console:** https://search.google.com/search-console
+
+---
 
 ## Changelog
 
-### December 2025
-- Initial repository created
-- CLAUDE.md file created for AI assistant guidance
-- Added mandatory Claude Rules for workflow (plan first, simplicity, no laziness)
-- Added `tasks/todo.md` structure for task tracking
+### 2025-12-11
+- Uppdaterade CLAUDE.md med komplett vision och strategi
+- Skapade omfattande projektplan i tasks/todo.md
+- Fixade hero-bild, PostCSS, affiliate-länkar
+- Lade till 18 lokala destinationsbilder
+- Implementerade Google Maps på destinationssidor
+
+### 2025-12-10
+- Initial setup med Next.js 14, TypeScript, Tailwind CSS
+- Multi-language routing (sv, en, de, no)
+- 18 destinationer med översättningar
+- CJ Affiliate integration

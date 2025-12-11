@@ -16,6 +16,7 @@ export function Navigation({ locale }: NavigationProps) {
   const navItems = [
     { href: `/${locale}/costa-blanca`, label: t(locale, 'nav.destinations') },
     { href: `/${locale}/hotels`, label: t(locale, 'nav.hotels') },
+    { href: `/${locale}/practical-info`, label: t(locale, 'nav.practicalInfo') },
   ];
 
   return (
