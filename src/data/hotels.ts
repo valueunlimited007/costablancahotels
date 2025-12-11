@@ -149,7 +149,7 @@ export const hotels: Hotel[] = [
     },
     amenities: ['pool', 'spa', 'gym', 'restaurant', 'bar', 'wifi', 'parking', 'air-conditioning'],
     images: {
-      main: '/images/hotels/benidorm/hotel-asia-gardens.jpg',
+      main: '/images/hotels/benidorm/hotel-asia-gardens.webp',
     },
     sourceUrl: 'https://www.hotels.com/ho227917/asia-gardens-hotel-thai-spa-a-royal-hideaway-hotel-benidorm-spain/',
     hotelsComSearchQuery: 'Asia Gardens Hotel',
@@ -219,7 +219,7 @@ export const hotels: Hotel[] = [
     },
     amenities: ['pool', 'gym', 'restaurant', 'bar', 'wifi', 'parking', 'beach-access', 'kids-club', 'air-conditioning'],
     images: {
-      main: '/images/hotels/benidorm/hotel-gran-bali.jpg',
+      main: '/images/hotels/benidorm/hotel-gran-bali.avif',
     },
     sourceUrl: 'https://www.hotels.com/ho114329/gran-hotel-bali-benidorm-spain/',
     hotelsComSearchQuery: 'Gran Hotel Bali Benidorm',
@@ -289,7 +289,7 @@ export const hotels: Hotel[] = [
     },
     amenities: ['pool', 'restaurant', 'bar', 'wifi', 'air-conditioning', 'balcony'],
     images: {
-      main: '/images/hotels/benidorm/hotel-rh-princesa.jpg',
+      main: '/images/hotels/benidorm/hotel-rh-princesa.avif',
     },
     sourceUrl: 'https://www.hotels.com/ho185639/hotel-rh-princesa-benidorm-spain/',
     hotelsComSearchQuery: 'Hotel RH Princesa Benidorm',
@@ -429,7 +429,7 @@ export const hotels: Hotel[] = [
     },
     amenities: ['pool', 'spa', 'gym', 'restaurant', 'bar', 'wifi', 'parking', 'kids-club', 'air-conditioning'],
     images: {
-      main: '/images/hotels/benidorm/melia-villaitana.jpg',
+      main: '/images/hotels/benidorm/melia-villaitana.avif',
     },
     sourceUrl: 'https://www.melia.com/en/hotels/spain/benidorm/melia-villaitana',
     hotelsComSearchQuery: 'Melia Villaitana Benidorm',
@@ -499,7 +499,7 @@ export const hotels: Hotel[] = [
     },
     amenities: ['pool', 'gym', 'restaurant', 'bar', 'wifi', 'beach-access', 'air-conditioning', 'sea-view'],
     images: {
-      main: '/images/hotels/benidorm/barcelo-benidorm-beach.jpg',
+      main: '/images/hotels/benidorm/barcelo-benidorm-beach.avif',
     },
     sourceUrl: 'https://www.barcelo.com/en-gb/barcelo-benidorm-beach/',
     hotelsComSearchQuery: 'Barcelo Benidorm Beach',
@@ -639,7 +639,7 @@ export const hotels: Hotel[] = [
     },
     amenities: ['pool', 'restaurant', 'bar', 'wifi', 'kids-club', 'air-conditioning'],
     images: {
-      main: '/images/hotels/benidorm/sol-pelicanos-ocas.jpg',
+      main: '/images/hotels/benidorm/sol-pelicanos-ocas.avif',
     },
     sourceUrl: 'https://www.melia.com/en/hotels/spain/benidorm/sol-pelicanos-ocas',
     hotelsComSearchQuery: 'Sol Pelicanos Ocas Benidorm',
