@@ -17,18 +17,55 @@ export async function generateMetadata({
   const { lang } = await params;
   const locale: Locale = isValidLocale(lang) ? lang : 'sv';
 
+  // SEO-optimized titles per language
+  const titles: Record<Locale, string> = {
+    sv: 'Costa Blanca Hotels - Hitta & Boka Hotell i Spanien',
+    en: 'Costa Blanca Hotels - Find & Book Hotels in Spain',
+    de: 'Costa Blanca Hotels - Hotels in Spanien finden & buchen',
+    no: 'Costa Blanca Hotels - Finn & Bestill Hoteller i Spania',
+  };
+
+  // SEO-optimized descriptions per language
+  const descriptions: Record<Locale, string> = {
+    sv: 'Upptäck Costa Blanca! Jämför och boka hotell i Benidorm, Alicante, Torrevieja och 15 andra destinationer. 300+ soldagar, fantastiska stränder.',
+    en: 'Discover Costa Blanca! Compare and book hotels in Benidorm, Alicante, Torrevieja and 15 other destinations. 300+ sunny days, amazing beaches.',
+    de: 'Entdecken Sie Costa Blanca! Vergleichen und buchen Sie Hotels in Benidorm, Alicante, Torrevieja und 15 weiteren Reisezielen. 300+ Sonnentage.',
+    no: 'Oppdag Costa Blanca! Sammenlign og bestill hoteller i Benidorm, Alicante, Torrevieja og 15 andre destinasjoner. 300+ soldager, fantastiske strender.',
+  };
+
   return {
-    title: t(locale, 'site.title'),
-    description: t(locale, 'site.description'),
+    title: titles[locale],
+    description: descriptions[locale],
     alternates: {
       canonical: `https://costablancahotels.com/${locale}/costa-blanca`,
       languages: {
-        'sv': '/sv/costa-blanca',
-        'en': '/en/costa-blanca',
-        'de': '/de/costa-blanca',
-        'no': '/no/costa-blanca',
+        sv: '/sv/costa-blanca',
+        en: '/en/costa-blanca',
+        de: '/de/costa-blanca',
+        no: '/no/costa-blanca',
         'x-default': '/sv/costa-blanca',
       },
+    },
+    openGraph: {
+      title: titles[locale],
+      description: descriptions[locale],
+      url: `https://costablancahotels.com/${locale}/costa-blanca`,
+      images: [
+        {
+          url: '/images/heroes/costa-blanca.webp',
+          width: 1200,
+          height: 630,
+          alt: 'Costa Blanca - Spaniens soliga medelhavskust',
+        },
+      ],
+      locale: locale === 'sv' ? 'sv_SE' : locale === 'de' ? 'de_DE' : locale === 'no' ? 'nb_NO' : 'en_GB',
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: titles[locale],
+      description: descriptions[locale],
+      images: ['/images/heroes/costa-blanca.webp'],
     },
   };
 }

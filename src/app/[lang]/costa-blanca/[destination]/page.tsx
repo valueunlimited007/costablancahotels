@@ -43,12 +43,50 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   const trans = destination.translations[lang];
 
+  // Build alternate languages excluding Swedish for destinations with external sites
+  const alternateLanguages: Record<string, string> = {};
+  const availableLocales = destination.externalSvSite
+    ? locales.filter((l) => l !== 'sv')
+    : locales;
+
+  for (const locale of availableLocales) {
+    alternateLanguages[locale] = `/${locale}/costa-blanca/${slug}`;
+  }
+
+  // SEO-optimized title patterns per language
+  const titlePatterns: Record<Locale, string> = {
+    sv: `${trans.name} - Hotell & Boende | Costa Blanca`,
+    en: `${trans.name} - Hotels & Accommodation | Costa Blanca`,
+    de: `${trans.name} - Hotels & Unterkünfte | Costa Blanca`,
+    no: `${trans.name} - Hoteller & Overnatting | Costa Blanca`,
+  };
+
   return {
-    title: `${trans.name} - ${t(lang, 'nav.hotels')} | Costa Blanca Hotels`,
+    title: titlePatterns[lang],
     description: trans.description,
+    alternates: {
+      canonical: `https://costablancahotels.com/${lang}/costa-blanca/${slug}`,
+      languages: alternateLanguages,
+    },
     openGraph: {
-      title: `${trans.name} - ${t(lang, 'nav.hotels')}`,
+      title: titlePatterns[lang],
       description: trans.description,
+      url: `https://costablancahotels.com/${lang}/costa-blanca/${slug}`,
+      images: [
+        {
+          url: getHeroImage(slug),
+          width: 1200,
+          height: 630,
+          alt: trans.name,
+        },
+      ],
+      locale: lang === 'sv' ? 'sv_SE' : lang === 'de' ? 'de_DE' : lang === 'no' ? 'nb_NO' : 'en_GB',
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: titlePatterns[lang],
+      description: trans.shortDescription,
       images: [getHeroImage(slug)],
     },
   };
