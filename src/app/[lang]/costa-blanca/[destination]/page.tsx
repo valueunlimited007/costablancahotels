@@ -333,6 +333,82 @@ export default async function DestinationPage({ params }: PageProps) {
         </div>
       </section>
 
+      {/* Explore More Section */}
+      <section className="py-12 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl font-bold text-gray-900 mb-8">
+            {getExploreMoreTitle(lang, trans.name)}
+          </h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            {/* Restaurants Link */}
+            <Link
+              href={`/${lang}/costa-blanca/${slug}/restaurants`}
+              className="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow group"
+            >
+              <div className="flex items-center mb-4">
+                <span className="text-3xl mr-3">🍽️</span>
+                <h3 className="text-lg font-bold text-gray-900 group-hover:text-primary transition-colors">
+                  {getRestaurantsLinkTitle(lang)}
+                </h3>
+              </div>
+              <p className="text-gray-600 text-sm mb-4">
+                {getRestaurantsLinkDescription(lang, trans.name)}
+              </p>
+              <span className="inline-flex items-center text-primary font-medium text-sm group-hover:underline">
+                {getViewAllText(lang)}
+                <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </span>
+            </Link>
+
+            {/* Activities Link */}
+            <Link
+              href={`/${lang}/costa-blanca/${slug}/activities`}
+              className="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow group"
+            >
+              <div className="flex items-center mb-4">
+                <span className="text-3xl mr-3">🎯</span>
+                <h3 className="text-lg font-bold text-gray-900 group-hover:text-primary transition-colors">
+                  {getActivitiesLinkTitle(lang)}
+                </h3>
+              </div>
+              <p className="text-gray-600 text-sm mb-4">
+                {getActivitiesLinkDescription(lang, trans.name)}
+              </p>
+              <span className="inline-flex items-center text-primary font-medium text-sm group-hover:underline">
+                {getViewAllText(lang)}
+                <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </span>
+            </Link>
+
+            {/* Practical Info Link */}
+            <Link
+              href={`/${lang}/practical-info`}
+              className="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow group"
+            >
+              <div className="flex items-center mb-4">
+                <span className="text-3xl mr-3">ℹ️</span>
+                <h3 className="text-lg font-bold text-gray-900 group-hover:text-primary transition-colors">
+                  {getPracticalInfoLinkTitle(lang)}
+                </h3>
+              </div>
+              <p className="text-gray-600 text-sm mb-4">
+                {getPracticalInfoLinkDescription(lang)}
+              </p>
+              <span className="inline-flex items-center text-primary font-medium text-sm group-hover:underline">
+                {getReadMoreText(lang)}
+                <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-16 bg-gradient-to-r from-primary to-primary-dark">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -652,4 +728,94 @@ function getCtaDescription(locale: Locale): string {
     no: 'Sammenlign priser fra hundrevis av hoteller og finn det perfekte overnattingsstedet for ferien din.',
   };
   return descriptions[locale];
+}
+
+function getExploreMoreTitle(locale: Locale, name: string): string {
+  const titles: Record<Locale, string> = {
+    sv: `Upptäck mer i ${name}`,
+    en: `Explore More in ${name}`,
+    de: `Entdecken Sie mehr in ${name}`,
+    no: `Utforsk mer i ${name}`,
+  };
+  return titles[locale];
+}
+
+function getRestaurantsLinkTitle(locale: Locale): string {
+  const titles: Record<Locale, string> = {
+    sv: 'Restauranger',
+    en: 'Restaurants',
+    de: 'Restaurants',
+    no: 'Restauranter',
+  };
+  return titles[locale];
+}
+
+function getRestaurantsLinkDescription(locale: Locale, name: string): string {
+  const descriptions: Record<Locale, string> = {
+    sv: `Hitta de bästa restaurangerna i ${name} - från tapas till fine dining.`,
+    en: `Find the best restaurants in ${name} - from tapas to fine dining.`,
+    de: `Finden Sie die besten Restaurants in ${name} - von Tapas bis Fine Dining.`,
+    no: `Finn de beste restaurantene i ${name} - fra tapas til fine dining.`,
+  };
+  return descriptions[locale];
+}
+
+function getActivitiesLinkTitle(locale: Locale): string {
+  const titles: Record<Locale, string> = {
+    sv: 'Aktiviteter',
+    en: 'Activities',
+    de: 'Aktivitäten',
+    no: 'Aktiviteter',
+  };
+  return titles[locale];
+}
+
+function getActivitiesLinkDescription(locale: Locale, name: string): string {
+  const descriptions: Record<Locale, string> = {
+    sv: `Stränder, sevärdheter och saker att göra i ${name}.`,
+    en: `Beaches, attractions and things to do in ${name}.`,
+    de: `Strände, Sehenswürdigkeiten und Aktivitäten in ${name}.`,
+    no: `Strender, severdigheter og ting å gjøre i ${name}.`,
+  };
+  return descriptions[locale];
+}
+
+function getPracticalInfoLinkTitle(locale: Locale): string {
+  const titles: Record<Locale, string> = {
+    sv: 'Praktisk info',
+    en: 'Practical Info',
+    de: 'Praktische Infos',
+    no: 'Praktisk info',
+  };
+  return titles[locale];
+}
+
+function getPracticalInfoLinkDescription(locale: Locale): string {
+  const descriptions: Record<Locale, string> = {
+    sv: 'Transport, tips och allt du behöver veta inför din resa.',
+    en: 'Transport, tips and everything you need to know for your trip.',
+    de: 'Transport, Tipps und alles, was Sie für Ihre Reise wissen müssen.',
+    no: 'Transport, tips og alt du trenger å vite før reisen.',
+  };
+  return descriptions[locale];
+}
+
+function getViewAllText(locale: Locale): string {
+  const texts: Record<Locale, string> = {
+    sv: 'Visa alla',
+    en: 'View all',
+    de: 'Alle anzeigen',
+    no: 'Vis alle',
+  };
+  return texts[locale];
+}
+
+function getReadMoreText(locale: Locale): string {
+  const texts: Record<Locale, string> = {
+    sv: 'Läs mer',
+    en: 'Read more',
+    de: 'Mehr lesen',
+    no: 'Les mer',
+  };
+  return texts[locale];
 }

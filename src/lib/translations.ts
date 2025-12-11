@@ -6,6 +6,7 @@ export type TranslationKey =
   | 'nav.home'
   | 'nav.destinations'
   | 'nav.hotels'
+  | 'nav.practicalInfo'
   | 'nav.about'
   | 'nav.contact'
   | 'hero.title'
@@ -32,6 +33,7 @@ const translations: Record<Locale, Record<TranslationKey, string>> = {
     'nav.home': 'Hem',
     'nav.destinations': 'Destinationer',
     'nav.hotels': 'Hotell',
+    'nav.practicalInfo': 'Praktisk info',
     'nav.about': 'Om oss',
     'nav.contact': 'Kontakt',
     'hero.title': 'Välkommen till Costa Blanca',
@@ -57,6 +59,7 @@ const translations: Record<Locale, Record<TranslationKey, string>> = {
     'nav.home': 'Home',
     'nav.destinations': 'Destinations',
     'nav.hotels': 'Hotels',
+    'nav.practicalInfo': 'Practical Info',
     'nav.about': 'About',
     'nav.contact': 'Contact',
     'hero.title': 'Welcome to Costa Blanca',
@@ -82,6 +85,7 @@ const translations: Record<Locale, Record<TranslationKey, string>> = {
     'nav.home': 'Startseite',
     'nav.destinations': 'Reiseziele',
     'nav.hotels': 'Hotels',
+    'nav.practicalInfo': 'Praktische Infos',
     'nav.about': 'Über uns',
     'nav.contact': 'Kontakt',
     'hero.title': 'Willkommen an der Costa Blanca',
@@ -107,6 +111,7 @@ const translations: Record<Locale, Record<TranslationKey, string>> = {
     'nav.home': 'Hjem',
     'nav.destinations': 'Destinasjoner',
     'nav.hotels': 'Hoteller',
+    'nav.practicalInfo': 'Praktisk info',
     'nav.about': 'Om oss',
     'nav.contact': 'Kontakt',
     'hero.title': 'Velkommen til Costa Blanca',
