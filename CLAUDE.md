@@ -64,11 +64,32 @@
 |-----------|-----------|-----------|
 | Framework | Next.js 14 (App Router) | SSG för prestanda & SEO |
 | Språk | TypeScript | Typsäkerhet |
-| Styling | Tailwind CSS v3 | Utility-first |
+| Styling | Tailwind CSS v3.4 | Utility-first |
 | Deployment | Netlify | Enkel deploy, bra CDN |
 | Domän | costablancahotels.com | Produktionsdomän |
 | Analytics | Google Analytics 4 | (ej konfigurerat än) |
 | SEO | Google Search Console | Konfigurerat |
+
+### VIKTIGT: Tailwind CSS-konfiguration
+
+**Projektet använder Tailwind CSS v3 - INTE v4!**
+
+PostCSS-konfigurationen (`postcss.config.mjs`) MÅSTE se ut så här:
+```javascript
+const config = {
+  plugins: {
+    tailwindcss: {},      // ✅ RÄTT - Tailwind v3
+    autoprefixer: {},
+  },
+};
+```
+
+**ANVÄND ALDRIG:**
+```javascript
+'@tailwindcss/postcss': {}  // ❌ FEL - Detta är för Tailwind v4
+```
+
+Om CSS slutar fungera efter deploy, kontrollera alltid `postcss.config.mjs` först!
 
 ### Affiliate-integration
 - **Partner:** CJ Affiliate / Hotels.com
